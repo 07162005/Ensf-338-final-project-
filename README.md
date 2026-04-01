@@ -1,1 +1,5 @@
-# Ensf-338-final-project-
+# Ensf-338-final-project-Group_3
+
+# CAMPUS NAVIGATION AND EVENT MANAGEMENT SYSTEM
+
+# GROUP MEMBERS:
