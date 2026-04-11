@@ -4,36 +4,53 @@ from models import Booking
 class BookingSystem:
     def __init__(self):
         self.all_bookings = []   # list of Booking objects
-                                 # You may later replace this with a BST/AVL structure
 
     def add_booking(self, booking: Booking):
-        # TODO:
-        # 1. Check if booking conflicts with an existing booking for same room/date/time
-        # 2. If no conflict, add to all_bookings
-        # 3. Keep ordered if you want easier retrieval
-        pass
+        # Check for conflict
+        if self.has_conflict(booking):
+            print("Booking conflict detected!")
+            return False
+
+        # Add booking
+        self.all_bookings.append(booking)
+
+        # Keep sorted by date + start time
+        self.all_bookings.sort(key=lambda b: (b.event_date, b.start_time))
+
+        return True
 
     def remove_booking(self, booking_id: str):
-        # TODO:
-        # Remove booking with matching booking_id
-        pass
+        for b in self.all_bookings:
+            if b.booking_id == booking_id:
+                self.all_bookings.remove(b)
+                return True
+        return False
 
     def get_bookings_for_day(self, event_date: str):
-        # TODO:
-        # Return all bookings on the given date
-        pass
+        result = []
+        for b in self.all_bookings:
+            if b.event_date == event_date:
+                result.append(b)
+        return result
 
     def get_bookings_in_time_range(self, event_date: str, start_time: int, end_time: int):
-        # TODO:
-        # Return all bookings overlapping the given time range
-        pass
+        result = []
+        for b in self.all_bookings:
+            if b.event_date == event_date:
+                # Check overlap
+                if not (b.end_time <= start_time or b.start_time >= end_time):
+                    result.append(b)
+        return result
 
     def get_next_upcoming_event(self):
-        # TODO:
-        # Return next upcoming booking in sorted order
-        pass
+        if len(self.all_bookings) == 0:
+            return None
+        return self.all_bookings[0]
 
     def has_conflict(self, new_booking: Booking):
-        # TODO:
-        # Check overlap against bookings in same room and same date
-        pass
+        for b in self.all_bookings:
+            if b.room_id == new_booking.room_id and b.event_date == new_booking.event_date:
+                # Check time overlap
+                if not (new_booking.end_time <= b.start_time or new_booking.start_time >= b.end_time):
+                    return True
+        return False
