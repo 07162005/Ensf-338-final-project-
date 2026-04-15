@@ -5,37 +5,42 @@ class Room:
         self.room_type = room_type    # "lecture", "lab", "office"
         self.bookings  = []           # list of Booking objects
                                       # You will implement booking insertion/search logic elsewhere
-
-
 class Building:
     def __init__(self, building_id: str, name: str, location: tuple):
         self.building_id = building_id   # e.g. "ICT"
         self.name        = name          # full building name
         self.location    = location      # grid coords or (lat, lon)
         self.rooms       = {}            # room_id -> Room
-
     def add_room(self, room: Room):
         self.rooms[room.room_id] = room
-
     def get_room(self, room_id: str):
         return self.rooms.get(room_id)
-
-
+    def remove_room(self, room_id: str):
+        if room_id in self.rooms:
+            del self.rooms[room_id]
+            return True
+        return False
 class Campus:
     def __init__(self):
         self.buildings = {}              # building_id -> Building
         self.pathways  = {}              # adjacency list:
                                          # {building_id: [(neighbor_id, weight), ...]}
-
     def add_building(self, building: Building):
         self.buildings[building.building_id] = building
         if building.building_id not in self.pathways:
             self.pathways[building.building_id] = []
-
     def get_building(self, building_id: str):
         return self.buildings.get(building_id)
-
-
+    def remove_building(self, building_id: str):
+        if building_id in self.buildings:
+            del self.buildings[building_id]
+            # Remove from pathways adjacency list and any edges pointing to it
+            if building_id in self.pathways:
+                del self.pathways[building_id]
+            for neighbors in self.pathways.values():
+                neighbors[:] = [(n, w) for n, w in neighbors if n != building_id]
+            return True
+        return False
 class Booking:
     def __init__(
         self,
@@ -54,24 +59,18 @@ class Booking:
         self.start_time  = start_time      # minutes from midnight
         self.end_time    = end_time        # minutes from midnight
         self.organizer   = organizer
-
-
 class Route:
     def __init__(self, source_id: str, destination_id: str, path: list, total_weight: float):
         self.source_id      = source_id
         self.destination_id = destination_id
         self.path           = path
         self.total_weight   = total_weight
-
-
 class NavigationSession:
     def __init__(self, user_id: str):
         self.user_id          = user_id
         self.current_location = None
         self.history          = []         # use this like a stack
         self.undo_limit       = 10
-
-
 class ServiceRequest:
     def __init__(
         self,
@@ -88,24 +87,18 @@ class ServiceRequest:
         self.description    = description
         self.priority       = priority     # 3=Emergency, 2=Standard, 1=Low
         self.timestamp      = timestamp    # used for tie-breaking
-
-
 class IncomingRequest:
     def __init__(self, request_id: str, request_type: str, payload, arrival_order: int):
         self.request_id    = request_id
         self.request_type  = request_type  # "navigation" or "service"
         self.payload       = payload
         self.arrival_order = arrival_order
-
-
 class BookingNode:
     def __init__(self, key, booking: Booking):
         self.key     = key                 # e.g. (event_date, start_time, booking_id)
         self.booking = booking
         self.left    = None
         self.right   = None
-
-
 class AVLNode:
     def __init__(self, key, booking: Booking):
         self.key     = key
@@ -113,3 +106,4 @@ class AVLNode:
         self.left    = None
         self.right   = None
         self.height  = 1
+
