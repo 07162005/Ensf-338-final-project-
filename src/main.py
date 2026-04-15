@@ -99,6 +99,29 @@ def lookup_room(app: CampusNavigationApp):
     print(f"Type: {room.room_type}")
 
 
+def delete_building_menu(app: CampusNavigationApp):
+    building_id = input("Enter building ID to delete: ").strip().upper()
+    removed = app.delete_building(building_id)
+
+    print("\n--- Delete Building ---")
+    if removed:
+        print(f"Building '{building_id}' deleted successfully.")
+    else:
+        print(f"Building '{building_id}' not found.")
+
+
+def delete_room_menu(app: CampusNavigationApp):
+    building_id = input("Enter building ID: ").strip().upper()
+    room_id = input("Enter room ID to delete: ").strip().upper()
+    removed = app.delete_room(building_id, room_id)
+
+    print("\n--- Delete Room ---")
+    if removed:
+        print(f"Room '{room_id}' deleted successfully.")
+    else:
+        print(f"Building or room not found.")
+
+
 def add_booking_menu(app: CampusNavigationApp):
     booking_id = input("Booking ID: ").strip()
     room_id = input("Room ID: ").strip().upper()
@@ -226,11 +249,13 @@ def show_menu():
     print("12. Serve next service request")
     print("13. Lookup building")
     print("14. Lookup room")
-    print("15. Enqueue incoming request")
-    print("16. Process next incoming request")
-    print("17. Auto-load 20 incoming requests")
-    print("18. Run full demo mode")
-    print("19. Exit")
+    print("15. Delete building")
+    print("16. Delete room")
+    print("17. Enqueue incoming request")
+    print("18. Process next incoming request")
+    print("19. Auto-load 20 incoming requests")
+    print("20. Run full demo mode")
+    print("21. Exit")
 
 
 def main():
@@ -308,18 +333,24 @@ def main():
             lookup_room(app)
 
         elif choice == "15":
-            enqueue_incoming_request_menu(app)
+            delete_building_menu(app)
 
         elif choice == "16":
-            process_next_incoming_request(app)
+            delete_room_menu(app)
 
         elif choice == "17":
-            simulate_request_pipeline(app)
+            enqueue_incoming_request_menu(app)
 
         elif choice == "18":
-            app.run_demo()
-        
+            process_next_incoming_request(app)
+
         elif choice == "19":
+            simulate_request_pipeline(app)
+
+        elif choice == "20":
+            app.run_demo()
+
+        elif choice == "21":
             print("Exiting application.")
             break
 

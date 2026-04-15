@@ -136,6 +136,15 @@ class CampusNavigationApp:
             return None
         return building.get_room(room_id.upper())
 
+    def delete_building(self, building_id: str):
+        return self.campus.remove_building(building_id.upper())
+
+    def delete_room(self, building_id: str, room_id: str):
+        building = self.lookup_building(building_id)
+        if building is None:
+            return False
+        return building.remove_room(room_id.upper())
+
    
     # Navigation
     
