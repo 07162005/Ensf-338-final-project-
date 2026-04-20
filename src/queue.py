@@ -1,42 +1,47 @@
-from models import ServiceRequest, IncomingRequest
-
-
 class RequestQueue:
     def __init__(self):
-        self.queue = []   # FIFO queue
+        self.queue = []
 
-    def enqueue(self, request: IncomingRequest):
+    def enqueue(self, request):
         self.queue.append(request)
 
     def dequeue(self):
-        if self.is_empty():
-            print("Queue is empty")
+        if len(self.queue) == 0:
             return None
         return self.queue.pop(0)
+
+    def peek(self):
+        if len(self.queue) == 0:
+            return None
+        return self.queue[0]
 
     def is_empty(self):
         return len(self.queue) == 0
 
+    def size(self):
+        return len(self.queue)
+
 
 class PriorityServiceQueue:
     def __init__(self):
-        self.requests = []   # list of ServiceRequest objects
+        self.requests = []
 
-    def add_request(self, request: ServiceRequest):
-        # Add request
+    def add_request(self, request):
         self.requests.append(request)
-
-        # Sort by:
-        # 1. Higher priority first (-priority)
-        # 2. Earlier timestamp first
         self.requests.sort(key=lambda r: (-r.priority, r.timestamp))
 
     def serve_next(self):
-        if self.is_empty():
-            print("No service requests available")
+        if len(self.requests) == 0:
             return None
-
         return self.requests.pop(0)
+
+    def peek(self):
+        if len(self.requests) == 0:
+            return None
+        return self.requests[0]
 
     def is_empty(self):
         return len(self.requests) == 0
+
+    def size(self):
+        return len(self.requests)
