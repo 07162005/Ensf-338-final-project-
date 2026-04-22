@@ -1,0 +1,16 @@
+# building_id,name,location(x;y)
+ICT,Information and Communications Technology,0;0
+ENG,Engineering,1;0
+MSC,MacEwan Student Centre,2;0
+TFDL,Taylor Family Digital Library,3;0
+MTH,Mathematical Sciences,1;1
+SB,Science B,2;1
+EEEL,Electrical Engineering,0;1
+ICTC,Information Technologies Complex,0;2
+BIO,Biological Sciences,2;2
+CHEM,Chemistry,3;2
+PHYS,Physics,4;1
+LIB,Library Annex,4;0
+HNSC,Health Sciences Centre,5;1
+ADMIN,Administration,3;1
+ART,Arts,5;0
