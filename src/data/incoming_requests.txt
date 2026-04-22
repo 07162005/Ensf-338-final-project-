@@ -1,0 +1,21 @@
+# request_id,request_type,payload,arrival_order
+RQ001,navigation,ICT->ENG,1
+RQ002,service,Reset password,2
+RQ003,navigation,ENG->TFDL,3
+RQ004,service,Book room,4
+RQ005,navigation,MSC->HNSC,5
+RQ006,service,Fix projector,6
+RQ007,navigation,BIO->LIB,7
+RQ008,service,Wayfinding help,8
+RQ009,navigation,ART->ICT,9
+RQ010,service,Maintenance follow-up,10
+RQ011,navigation,ICT->ENG,11
+RQ012,service,Reset password,12
+RQ013,navigation,ENG->TFDL,13
+RQ014,service,Book room,14
+RQ015,navigation,MSC->HNSC,15
+RQ016,service,Fix projector,16
+RQ017,navigation,BIO->LIB,17
+RQ018,service,Wayfinding help,18
+RQ019,navigation,ART->ICT,19
+RQ020,service,Maintenance follow-up,20

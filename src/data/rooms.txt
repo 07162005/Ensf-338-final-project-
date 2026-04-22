@@ -1,0 +1,20 @@
+# building_id,room_id,capacity,room_type
+ICT,ICT-121,120,lecture
+ICT,ICT-102,30,lab
+ENG,ENG-201,80,lecture
+ENG,ENG-105,25,lab
+MSC,MSC-101,100,event
+MSC,MSC-203,40,study
+TFDL,TFDL-410,60,study
+TFDL,TFDL-120,25,study
+MTH,MTH-211,70,lecture
+SB,SB-140,90,lecture
+EEEL,EEEL-161,45,lab
+ICTC,ICTC-200,55,lab
+BIO,BIO-301,50,lecture
+CHEM,CHEM-220,35,lab
+PHYS,PHYS-150,75,lecture
+LIB,LIB-110,20,study
+HNSC,HNSC-330,85,lecture
+ADMIN,ADMIN-101,30,office
+ART,ART-205,65,studio

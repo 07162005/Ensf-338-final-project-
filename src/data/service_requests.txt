@@ -1,0 +1,9 @@
+SR001,Ava,IT,Projector not working in ICT-121,3,1
+SR002,Ben,Maintenance,Broken chair in ENG-201,1,2
+SR003,Chloe,HelpDesk,Password reset needed,2,3
+SR004,Diego,IT,Network outage in TFDL,3,4
+SR005,Ella,Maintenance,Air conditioning issue in MSC-101,2,5
+SR006,Finn,HelpDesk,Printer jam in LIB-110,1,6
+SR007,Grace,IT,Lab machine unavailable in ICTC-200,2,7
+SR008,Hugo,Maintenance,Water leak in CHEM-220,3,8
+SR009,Ivy,HelpDesk,Room booking question,1,9
